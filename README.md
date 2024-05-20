@@ -48,25 +48,25 @@ flask shell
 flask run
 ```
 
-6. Access the application:
+6. **Access the application**:
    Open your web browser and go to 'http://127.0.0.1:5000'
 
 ## Features
 
-User Registration
+**User Registration**
 Users can register by providing their username, email, and password.
 
-User Login
+**User Login**
 Registered users can log in by providing their email and password.
 
-Create New Post
+**Create New Post**
 Users can create a new blog post by providing a title and content.
 
-View Blog Posts
+**View Blog Posts**
 Users can view all blog posts on the main page.
 
-Like & Comment
+**Like & Comment**
 Users can like and comment on other users posts.
 
-Update Account
+**Update Account**
 Users can update their account information and change their password.
