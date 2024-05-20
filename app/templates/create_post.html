@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+
+<div class="container" id="auth-container">
+    <div class="card">
+        <div class="card-body">
+            <h4>Create New Post</h4>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-floating mb-3" id="login_components">
+                    {{ form.title(class="form-control", id="floatingInput", placeholder="Title") }}
+                    {{ form.title.label(class="form-label", for="floatingInput") }}
+                    {% for err in form.title.errors %}
+                    <span class="text-danger">{{ err }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-floating mb-3" id="login_components">
+                    {{ form.content(class="form-control", id="floatingInput", placeholder="Content") }}
+                    {{ form.content.label(class="form-label", for="floatingInput") }}
+                    {% for err in form.content.errors %}
+                    <span class="text-danger">{{ err }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div>
+                    {{ form.submit() }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="container w-50">
+    <article>
+        <p><b>{{ post.author.username }}</b><br>on {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+        <h4>{{ post.title }}</h4>
+        <div style="text-align: justify;">
+            {{ post.content }}
+        </div>
+    </article>
+    <hr>
+    {% if current_user.is_authenticated %}
+        <p>
+            {% if post.like_count > 0 %}
+                {{ post.like_count }} {% if post.like_count == 1 %} like {% else %} likes {% endif %}
+            {% endif %}
+        </p>
+        <form method="POST" action="{{ url_for('like_post', post_id=post.id) }}">
+            <button type="submit" class="btn border-primary">
+                {{ 'Unlike' if current_user in liked_users else 'Like' }}
+            </button>
+        </form>
+        <hr>
+        <form method="POST" action="{{ url_for('comment_post', post_id=post.id) }}">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.content() }}
+            </div>
+            <div>
+                {{ form.submit() }}
+            </div>
+        </form>
+        <hr>
+        
+        {% for comment in post.comments %}
+        <div class="card mt-1 mb-3">
+            <div class="card-body">
+                <div>
+                    <p style="text-align: justify;">{{ comment.content }}</p>
+                    <p>by <b>{{ comment.user_name }}</b> on {{ comment.date_posted.strftime('%Y-%m-%d') }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p><a href="{{ url_for('login') }}">Login</a> to comment and like.</p>
+    {% endif %}
+</div>
+{% endblock %}

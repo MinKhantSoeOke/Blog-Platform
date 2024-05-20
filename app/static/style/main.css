@@ -1,0 +1,22 @@
+body {
+    background-color: lightblue;
+}
+
+#auth-container {
+    text-align: center;
+    width: 500px;
+}
+
+.card {
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.no-color-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.auth-links {
+    padding: 0 10px 10px 10px;
+}

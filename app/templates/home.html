@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1 class="text-center mt-3 mb-3">Blog Posts</h1>
+{% for post in posts %}
+<div class="container w-50 mt-1 mb-3">
+    <div class="card">
+        <div class="card-body">
+            <article>
+                <p><b>{{ post.author.username }}</b><br>on {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+                <h4><a class="no-color-link" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h4>
+                <p>{{ post.content[:100] }}...</p>
+                <a href="{{ url_for('post', post_id=post.id) }}">Read More</a>
+            </article>
+        </div>
+        {% if current_user.is_authenticated %}
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            {% if post.like_count > 0 %}
+                            {{ post.like_count }} {% if post.like_count == 1 %} like {% else %} likes {% endif %}
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            {% if post.comment_count > 0 %}
+                            {{ post.comment_count }} {% if post.comment_count == 1 %} comment {% else %} comments {% endif %}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form action="/post/{{post.id}}/like" method="POST">
+                            <button type="submit" class="btn border-primary" data-post-id="{{ post.id }}">Like</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="/post/{{post.id}}/comment" method="POST">
+                            <button type="submit" class="btn border-primary">Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+    
+    
+    
+    
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,40 @@
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" id="brand" href="/">Blog Platform</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+
+  
+          {% if current_user.is_authenticated %}
+          <ul class="navbar-nav">
+            <li class="navbar-item">
+                <a class="nav-link" href="{{ url_for('account') }}">Account</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="navbar-item">
+                <a class="nav-link" href="{{ url_for('new_post') }}">Add Post</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="navbar-item">
+                <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+          </ul>
+          {% else %}
+            <ul class="navbar-nav">
+              <li class="navbar-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+            </ul>
+          {% endif %}
+
+          
+        </div>
+      </div>
+    </nav>
+</body>
