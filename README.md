@@ -32,7 +32,7 @@ source venv/bin/activate
 
 3. Install the dependencies:
 ```
-pip install Flask
+pip install -r requirements.txt
 ```
 
 4. Run the application:
