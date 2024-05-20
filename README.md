@@ -35,20 +35,12 @@ source venv/bin/activate
 pip install Flask
 ```
 
-4. Set up the database:
+4. Run the application:
 ```
-flask shell
->>> from app import db
->>> db.create_all()
->>> exit()
+python3 run.py
 ```
 
-5. Run the application:
-```
-flask run
-```
-
-6. **Access the application**:
+5. **Access the application**:
    - Open your web browser and go to 'http://127.0.0.1:5000'
 
 ## Features
